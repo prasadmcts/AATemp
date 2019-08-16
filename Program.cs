@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -169,16 +169,16 @@ namespace DateTimeTest
             return yearNum;
         }
 
+        public static int GetYearDifference(this DateTime startDate, DateTime endDate)
+        {
+            return (endDate.Year - startDate.Year - 1) + (((endDate.Month > startDate.Month) || ((endDate.Month == startDate.Month) && (endDate.Day >= startDate.Day))) ? 1 : 0);
+        }
+
         public static IEnumerable<int> GetYears(this DateTime startDate, DateTime endDate)
         {
             int totalYears = GetYearDifference(startDate, endDate);
 
             return startDate.GetYearNumber().SteppingNumbers(startDate.GetYearNumber() + totalYears);
-        }
-
-        public static int GetYearDifference(this DateTime startDate, DateTime endDate)
-        {
-            return (endDate.Year - startDate.Year - 1) + (((endDate.Month > startDate.Month) || ((endDate.Month == startDate.Month) && (endDate.Day >= startDate.Day))) ? 1 : 0);
         }
 
         #endregion
